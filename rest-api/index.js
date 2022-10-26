@@ -18,6 +18,7 @@ mongoose.connect(mongoDb.db, {
 
 //Port and server
 const bookRoute = require('./node-backend/routes/book.routes');
+const userRoute = require('./node-backend/routes/user.routes');
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -26,7 +27,9 @@ app.use(bodyParser.urlencoded({
 app.use(cors());
 
 app.use(express.static(path.join(__dirname, 'dist/Bookstore')));
+
 app.use('/api', bookRoute);
+app.use('/api', userRoute);
 const port = process.env.port || 8000;
 app.listen(port,()=>{
     console.log('Listening Port on: ' + port);
